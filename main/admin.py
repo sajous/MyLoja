@@ -1,15 +1,25 @@
 from django.contrib import admin
-from .models import Product, category , color , size , marca, ProductAtribute
+from .models import Product, category , color , size , marca, ProductAtribute, Banner
 
 # Register your models here.
-
-admin.site.register(category)
-admin.site.register(marca)
-admin.site.register(color)
+admin.site.register(Banner)
 admin.site.register(size)
 
+
+class ColorAdmin(admin.ModelAdmin):
+      list_display =('title','color_tag_path')
+admin.site.register(color, ColorAdmin)
+
+class MarcaAdmin(admin.ModelAdmin):
+      list_display =('title','image_tag_path')
+admin.site.register(marca, MarcaAdmin)
+
+class CategoryAdmin(admin.ModelAdmin):
+      list_display =('title','image_tag_path')
+admin.site.register(category , CategoryAdmin)
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display =('id', 'title', 'marca', 'color', 'size', 'status')
+    list_display =('id', 'title', 'marca', 'image_tag_path', 'color', 'size', 'status')
     list_editable = ('status',)
 admin.site.register(Product, ProductAdmin)
 
